@@ -1,4 +1,9 @@
 ---
+import Resets from '@julian_cataldo/astro-resets/Resets.astro';
+import '@fontsource/rajdhani/300.css';
+import '@fontsource/rajdhani/400.css';
+import '@fontsource/rajdhani/700.css';
+
 interface Props {
 	title: string;
 }
@@ -15,37 +20,100 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<Resets />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
-<style is:global>
+<style lang="scss" is:global>
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--spacing-unit-15: 15rem;
+		--spacing-unit-10: 10rem;
+		--spacing-unit-8: 8rem;
+		--spacing-unit-5: 5rem;
+		--spacing-unit-2: 2rem;
+		--spacing-unit-1: 1rem;
+		--content-width: 96rem;
+
+		@media(max-width: 1023px) {
+			--spacing-unit-15: 9rem;
+			--spacing-unit-10: 6rem;
+			--spacing-unit-8: 4rem;
+			--spacing-unit-5: 3rem;
+			--spacing-unit-2: 2rem;
+			--spacing-unit-1: 1rem;
+		}
+
+		--color-text: #131313;
+		--color-background: #f7f7f7;
+		--color-links: #ffcc00;
 	}
+
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		font-size: 0.9vw;
+		
+		@media(max-width: 1023px) {
+			font-size: 62.5%;
+		}
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+
+	body {
+		font-family: 'Rajdhani', sans-serif;
+		font-size: 1.6rem;
+		line-height: 1.5;
+		color: var(--color-text);
+	}
+
+	[data-theme="dark"] {
+		color: var(--color-background);
+		background-color: var(--color-text);
+
+		a {
+			color: var(--color-links);
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 0.9;
+		letter-spacing: -0.03em;
+		margin-bottom: var(--spacing-unit-1);
+		font-weight: bold;
+	}
+
+	h1, .h1 {
+		font-size: 9.0rem;
+	}
+
+	h2, .h2 {
+		font-size: 6.0rem;
+	}
+
+	h3, .h3 {
+		font-size: 4.5rem;
+	}
+
+	h4, .h4 {
+		font-size: 3.6rem;
+	}
+
+	h5, .h5 {
+		font-size: 2.8rem;
+	}
+
+	h6, .h6 {
+		font-size: 2.0rem;
+	}
+
+	.body-large {
+		font-size: 1.8rem;
+	}
+
+	.body-small {
+		font-size: 1.4rem;
+	}
+
+	.lightweight {
+		font-weight: 300;
 	}
 </style>

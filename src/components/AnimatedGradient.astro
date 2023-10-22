@@ -1,0 +1,119 @@
+---
+
+import { GlowParticle } from '@assets/scripts/GlowParticle.js'
+
+---
+
+<canvas class="animated-gradient"></canvas>
+
+<style lang="scss">
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-color: #444;
+    }
+</style>
+
+<script>import { GlowParticle } from "@assets/scripts/GlowParticle"
+
+    const COLORS = [
+        {r: 45, g: 74, b: 227},
+        {r: 250, g: 255, b: 89},
+        {r: 255, g: 104, b: 248},
+        {r: 45, g: 204, b: 248},
+        {r: 54, g: 233, b: 87},
+    ]
+
+    class AnimatedGradient {
+        canvas
+        ctx
+        pixelRatio
+        totalParticles
+        particles
+        maxRadius
+        minRadius
+        stageWidth
+        stageHeight
+
+        constructor() {
+            this.canvas = document.querySelector('.animated-gradient')
+            this.ctx = this.canvas.getContext('2d')
+            this.pixelRatio = (window.devicePixelRatio > 1) ? 2 : 1
+            this.totalParticles = 10
+            this.particles = []
+            this.maxRadius = (document.body.clientWidth + document.body.clientHeight) * 0.50
+            this.minRadius = (document.body.clientWidth + document.body.clientHeight) * 0.25
+
+            window.addEventListener("resize", this.resize.bind(this), false)
+            this.resize()
+
+            window.requestAnimationFrame(this.animate.bind(this))
+        }
+
+        resize() {
+            this.stageWidth = document.body.clientWidth
+            this.stageHeight = document.body.clientHeight
+
+            this.canvas.width = this.stageWidth * this.pixelRatio
+            this.canvas.height = this.stageHeight * this.pixelRatio
+
+            this.ctx.scale(this.pixelRatio, this.pixelRatio)
+
+            this.ctx.globalCompositeOperation = "overlay"
+
+            this.createParticles()
+        }
+
+        createParticles() {
+            let curColor = 0
+            this.particles = []
+
+            for(let i = 0; i < this.totalParticles; i++) {
+                const particle = new GlowParticle(
+                    Math.random() * this.stageWidth,
+                    Math.random() * this.stageHeight,
+                    this.minRadius + (Math.random() * (this.maxRadius - this.minRadius)),
+                    COLORS[curColor]
+                )
+
+                if(++curColor >= COLORS.length){
+                    curColor = 0
+                }
+
+                this.particles[i] = particle
+            }
+        }
+
+        creatNoise(){
+            const iData = this.ctx.createImageData(this.canvas.width, this.canvas.height)
+            const buffer32 = new Uint32Array(iData.data.buffer)
+            const len = buffer32.length
+
+            for(let i = 0; i < len;i++) {
+                if (Math.random() < 0.5){
+                    buffer32[i] = 0xff404040;
+                } else {
+                    buffer32[i] = 0xff444444;
+                }
+            }
+
+            this.ctx.putImageData(iData, 0, 0);
+        }
+
+        animate() {
+            window.requestAnimationFrame(this.animate.bind(this))
+            this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
+            this.creatNoise()
+            for(let i = 0; i < this.totalParticles; i++) {
+                const particle = this.particles[i]
+                particle.animate(this.ctx, this.stageWidth, this.stageHeight)
+            }
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", ()=>{
+        new AnimatedGradient()
+    })
+</script>

@@ -1,0 +1,14 @@
+---
+import Blade from '@components/Blade.astro';
+import AnimatedGradient from '@components/AnimatedGradient.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Canvas Animated Gradient | Astro Tests">
+	<Blade theme="dark" size="screen">
+		<Fragment>
+			<h1 class="h2">Canvas Animated Gradient</h1>
+		</Fragment>
+        <AnimatedGradient slot="background" />
+	</Blade>
+</Layout>
