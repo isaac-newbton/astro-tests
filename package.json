@@ -10,6 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.2"
+    "@astrojs/netlify": "^3.0.3",
+    "astro": "^3.3.2",
+    "sass": "^1.69.4"
   }
 }
