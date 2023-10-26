@@ -1,0 +1,26 @@
+---
+import Blade from '@components/Blade.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Clear Logo">
+	<Blade theme="dark" size="screen">
+		<Fragment>
+			<h1 class="h2">Gradient Text <span class="gradient-text">Test</span></h1>
+			<h1 class="h2">Gradient <span class="gradient-text">Text Test 2</span></h1>
+		</Fragment>
+        <Fragment slot="background">
+            <div style="background-image:url(https://dev-clear-astro-wp.pantheonsite.io/wp-content/uploads/2023/10/cta-bg.webp); width: 100%; height: 100%; background-size: cover; background-attachment: fixed; opacity: 0.125;" />
+        </Fragment>
+	</Blade>
+</Layout>
+
+<style lang="scss">
+	.gradient-text {
+		--color-grad-start: #fc0;
+		--color-grad-end: #0cf;
+		background: radial-gradient(farthest-corner at 100% 0%, var(--color-grad-start), var(--color-grad-end));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
