@@ -25,6 +25,27 @@ import Layout from '../layouts/Layout.astro';
             <div style="background-image:url(https://dev-clear-astro-wp.pantheonsite.io/wp-content/uploads/2023/10/cta-bg.webp); width: 100%; height: 100%; background-size: cover; background-attachment: fixed; opacity: 0.125;" />
         </Fragment>
 	</Blade>
+	<Blade theme="dark" size="screen">
+		<Fragment>
+			<div class="glass-boxes">
+                <div class="glass-box simple">
+                    <h4>Glassy box test</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente.</p>
+                </div>
+                <div class="glass-box simple">
+                    <h4>Glassy box <span class="gradient-text">test</span></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <span class="gradient-text">Sapiente veniam nemo alias recusandae quod tempora totam repellat labore.</span></p>
+                </div>
+                <div class="glass-box simple">
+                    <h4>Glassy box test</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente veniam nemo alias recusandae quod tempora.</p>
+                </div>
+            </div>
+		</Fragment>
+        <Fragment slot="background">
+            <div style="background-image:url(https://dev-clear-astro-wp.pantheonsite.io/wp-content/uploads/2023/10/cta-bg.webp); width: 100%; height: 100%; background-size: cover; background-attachment: fixed; opacity: 0.125;" />
+        </Fragment>
+	</Blade>
 </Layout>
 
 <style lang="scss">
@@ -41,17 +62,29 @@ import Layout from '../layouts/Layout.astro';
 
     .glass-box {
         padding: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        background-image: radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.45));
+        border: 1px solid;
+        background-image: radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.5), rgba(0, 255, 255, 0.25), rgba(255,0,255,0.15), rgba(0, 64, 0, 0.45));
         box-shadow: 0 1rem 4rem 0 rgba(0, 0, 0, 0.35);
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
-        border-radius: 2rem;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to left, #333, #444);
+        border-width: 1px;
+
+        &.simple {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-image-source: unset;
+            border-radius: 2rem;
+            background-image: unset;
+            background-color: rgba(255, 255, 255, 0.0025);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
     }
 
     .gradient-text {
-		--color-grad-start: #fc0;
-		--color-grad-end: #f27;
+		--color-grad-start: #ffcc00;
+		--color-grad-end: #ff2478;
 		background: radial-gradient(farthest-corner at 100% 0%, var(--color-grad-start), var(--color-grad-end));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
