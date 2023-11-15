@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Blade from '@components/Blade.astro';
+import ScrollingVideoBackground from '@components/ScrollingVideoBackground.astro';
+import ScrollingVideoContentSection from '@components/ScrollingVideoContentSection.astro';
+---
+
+<Layout title="Canvas Animated Gradient">
+    <Blade theme="dark" size="screen">
+		<Fragment>
+			<h1>Blade before scroll</h1>
+		</Fragment>
+	</Blade>
+	<ScrollingVideoBackground>
+        <ScrollingVideoContentSection>
+            <h2>Content section 1</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptatibus, sapiente rerum quia veniam, blanditiis a, non provident rem sit sed sunt harum vitae deserunt nemo maiores minus ipsam reprehenderit hic modi ad recusandae voluptatum ullam consectetur. Magni ea omnis, provident libero consequuntur debitis at eum accusamus nostrum repellendus perferendis.</p>
+        </ScrollingVideoContentSection>
+        <ScrollingVideoContentSection>
+            <h2>Content section 2</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptatibus, sapiente rerum quia veniam, blanditiis a, non provident rem sit sed sunt harum vitae deserunt nemo maiores minus ipsam reprehenderit hic modi ad recusandae voluptatum ullam consectetur. Magni ea omnis, provident libero consequuntur debitis at eum accusamus nostrum repellendus perferendis.</p>
+        </ScrollingVideoContentSection>
+        <ScrollingVideoContentSection>
+            <h2>Content section 3</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptatibus, sapiente rerum quia veniam, blanditiis a, non provident rem sit sed sunt harum vitae deserunt nemo maiores minus ipsam reprehenderit hic modi ad recusandae voluptatum ullam consectetur. Magni ea omnis, provident libero consequuntur debitis at eum accusamus nostrum repellendus perferendis.</p>
+        </ScrollingVideoContentSection>
+    </ScrollingVideoBackground>
+    <Blade theme="dark" size="screen">
+		<Fragment>
+			<h2>Blade after scroll</h2>
+		</Fragment>
+	</Blade>
+</Layout>

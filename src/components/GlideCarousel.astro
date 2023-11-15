@@ -1,0 +1,47 @@
+---
+
+---
+
+<div class="glide">
+    <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+            <slot />
+        </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+    </div>
+</div>
+
+<style lang="scss">
+    @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+    .glide__slides {
+        align-items: stretch;
+    }
+</style>
+
+<script>
+    import Glide from '@glidejs/glide'
+    new Glide('.glide', {
+        type: 'carousel',
+        autoplay: 1,
+        hoverpause: false,
+        perView: 4,
+        keyboard: false,
+        animationDuration: 3000,
+        animationTimingFunc: 'linear',
+        breakpoints: {
+            1199: {
+                perView: 3,
+            },
+            767: {
+                perView: 2,
+            },
+            399: {
+                perView: 1,
+            },
+        }
+    }).mount()
+</script>
